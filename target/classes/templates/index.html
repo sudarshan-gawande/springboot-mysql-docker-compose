@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sudarshan Gawande - Book Store</title>
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Custom Styles -->
+	<style>
+		body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0F2027, #203A43, #2C5364);
+            color: white;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .container {
+            width: 60%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            color: #f8f9fa;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .btn-custom {
+            background: #2575fc;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            border: none;
+            transition: background 0.3s ease-in-out;
+            width: 100%;
+        }
+
+        .btn-custom:hover {
+            background: #6a11cb;
+        }
+
+        .table-container {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .table {
+            background-color: white;
+            color: black;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .table thead {
+            background: #2575fc;
+            color: white;
+        }
+
+        .table tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 13px;
+            color: #ddd;
+        }
+
+        .footer a {
+            color: #2575fc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer a:hover {
+            color: #6a11cb;
+        }
+
+	</style>
+
+</head>
+<body>
+
+<div class="container">
+	<h2>Book Store - Sudarshan's Application</h2>
+
+	<!-- Book Form -->
+	<form th:action="@{/}" th:object="${book}" method="POST">
+		<div class="form-group">
+			<label for="bookName">Book Name</label>
+			<input type="text" id="bookName" class="form-control" th:field="*{bookName}" required>
+		</div>
+
+		<div class="form-group">
+			<label for="authorName">Author Name</label>
+			<input type="text" id="authorName" class="form-control" th:field="*{authorName}" required>
+		</div>
+
+		<div class="form-group">
+			<label for="bookPrice">Book Price</label>
+			<input type="number" id="bookPrice" class="form-control" th:field="*{bookPrice}" required>
+		</div>
+
+		<button type="submit" class="btn btn-custom">Submit</button>
+	</form>
+</div>
+
+<!-- Book List Table -->
+<div class="table-container" th:if="${not #lists.isEmpty(books)}">
+	<table class="table table-hover">
+		<thead>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Price</th>
+			<th>Author</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each="book : ${books}">
+			<td th:text="${book.bookId}"></td>
+			<td th:text="${book.bookName}"></td>
+			<td th:text="${book.bookPrice}"></td>
+			<td th:text="${book.authorName}"></td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+	<h4>Sudarshan Gawande</h4>
+	<p>Contact Me: +91-7083411086</p>
+	<p>Visit: <a href="https://sudarshangawande.com">https://sudarshangawande.com</a></p>
+	<p>© 2025 Sudarshan Gawande - All Rights Reserved</p>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

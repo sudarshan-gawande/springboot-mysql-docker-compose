@@ -1,0 +1,5 @@
+com\sudarshangawande\app\binding\Book.class
+com\sudarshangawande\app\repository\BookRepository.class
+com\sudarshangawande\app\ServletInitializer.class
+com\sudarshangawande\app\Application.class
+com\sudarshangawande\app\controller\BookController.class
